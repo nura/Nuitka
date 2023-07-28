@@ -32,7 +32,10 @@ def createPlistInfoFile(logger, onefile):
 
     import plistlib
 
-    if Options.isStandaloneMode():
+    if Options.isOnefileMode():
+        bundle_dir = os.path.join(os.path.dirname(OutputDirectories.getResultBasePath(True)), '..')
+        bundle_dir = os.path.normpath(bundle_dir)
+    elif Options.isStandaloneMode():
         bundle_dir = os.path.dirname(OutputDirectories.getStandaloneDirectoryPath())
     else:
         bundle_dir = os.path.dirname(
