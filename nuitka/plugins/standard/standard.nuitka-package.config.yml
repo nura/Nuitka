@@ -2833,13 +2833,13 @@
         - 'PySide6.support.deprecated'
     - post-import-code:
         - |
-          def myconnect(self, func):
+          def myconnect(self, func, **kwargs):
               if hasattr(func, "im_func"):
                   if hasattr(func.im_func, "__compiled__"):
                       myconnect._protected = getattr(myconnect, "_protected", set())
                       myconnect._protected.add(func)
 
-              return orig_connect(self, func)
+              return orig_connect(self, func, **kwargs)
 
           from PySide6 import QtCore
           orig_connect = QtCore.SignalInstance.connect
