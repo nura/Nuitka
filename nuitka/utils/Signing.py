@@ -81,6 +81,8 @@ def addMacOSCodeSignature(filenames):
     if shallUseSigningForNotarization():
         command.append("--options=runtime")
         command.append("--timestamp")
+        command.append("--entitlements")
+        command.append("entitlements.plist")
 
     assert type(filenames) is not str
     command.extend(filenames)
